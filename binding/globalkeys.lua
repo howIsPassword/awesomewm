@@ -52,10 +52,10 @@ function _M.get()
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
+    awful.key({ modkey,           }, ",", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
+    awful.key({ modkey,           }, ".", function () awful.screen.focus_relative( 1) end,
+              {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, "Tab",
@@ -111,7 +111,10 @@ function _M.get()
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
-
+    awful.key({ modkey },             "i",    function() awful.spawn("rofi -show drun") end,
+              { description = "rofi", group = "launcher" }),
+    awful.key({ modkey, },            "w",    function() awful.spawn("rofi -show window -theme ") end,
+              { description = "show all windows from all workspaces", group = "awesome" }),
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {

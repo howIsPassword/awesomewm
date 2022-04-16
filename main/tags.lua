@@ -14,7 +14,6 @@ function _M.get ()
       { "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, RC.layouts[1]
     )
   end)
-  
   return tags
 end
 
