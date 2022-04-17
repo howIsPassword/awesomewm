@@ -18,13 +18,13 @@ local wallpaper_dir = "/home/qumn/Pictures/wallpapers"
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/aqua"
-theme.wallpaper                                 = wallpaper_dir .. "/eos_astronaut.png"
+theme.wallpaper                                 = wallpaper_dir .. "/wall.png"
 
-theme.font                                      = "Fira Code Retina 9"
+theme.font                                      = "JetBrainsMono Nerd Font 10"
 -- theme.taglist_font                              = "NotoSansMono Nerd Font 9"
-theme.notification_font                         = "Fira Code Retina 19"
+theme.notification_font                         = "JetBrainsMono Nerd Font 10"
 theme.notification_max_width                    = 400
-theme.taglist_font                              = "Fira Code Retina 9"
+theme.taglist_font                              = "JetBrainsMono Nerd Font 10"
 
 theme.accent                                    = "#e3f7a1"
 theme.white                                     = "#dcdbd7"
@@ -52,7 +52,7 @@ theme.fg_urgent                                 = "#CC9393"
 theme.bg_urgent                                 = "#2A1F1E"
 theme.border_width                              = dpi(1)
 theme.border_normal                             = theme.dark
-theme.border_focus                              = theme.purple
+theme.border_focus                              = theme.blue
 
 theme.bg1                                       = "#3d4059"
 theme.bg2                                       = "#313449"
