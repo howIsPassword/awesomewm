@@ -21,8 +21,7 @@ require("main.error-handling")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("")
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "aqua"))
+beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default"))
 -- }}}
 
 modkey = RC.vars.modkey
@@ -63,7 +62,8 @@ RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
 
 -- a variable needed in statusbar (helper)
 RC.launcher = awful.widget.launcher(
-  { image = beautiful.awesome_icon, menu = RC.mainmenu }
+  --{ image = beautiful.awesome_icon, menu = RC.mainmenu }
+  {  menu = RC.mainmenu }
 )
 
 -- Menubar configuration
