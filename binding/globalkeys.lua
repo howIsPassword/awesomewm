@@ -1,14 +1,20 @@
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+local gears         = require("gears")
+local awful         = require("awful")
+local scratch       = require("plug.scratch")
 -- local hotkeys_popup = require("awful.hotkeys_popup").widget
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Menubar library
-local menubar = require("menubar")
+local menubar       = require("menubar")
 
 -- Resource Configuration
-local modkey = RC.vars.modkey
-local terminal = RC.vars.terminal
+local modkey        = RC.vars.modkey
+local terminal      = RC.vars.terminal
+local chrome        = "google-chrome-stable"
+local vol_up        = "/home/qumn/scripts/vol-up.sh"
+local vol_dwon      = "/home/qumn/scripts/vol-down.sh"
+local vol_mute      = "/home/qumn/scripts/vol-toggle.sh"
+local mpv_toggle    = "mpc toggle"
 
 local _M = {}
 
@@ -28,7 +34,7 @@ function _M.get()
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+    awful.key({ modkey,           }, "Tab", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
     awful.key({ modkey,           }, "j",
@@ -43,8 +49,8 @@ function _M.get()
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () RC.mainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+    -- awful.key({ modkey,           }, "w", function () RC.mainmenu:show() end,
+    --           {description = "show main menu", group = "awesome"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Layout manipulation
@@ -58,7 +64,7 @@ function _M.get()
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, "Tab",
+    awful.key({ modkey,           }, "Escape",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -73,7 +79,7 @@ function _M.get()
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ modkey, "Control"   }, "k", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -151,9 +157,27 @@ function _M.get()
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    -- awful.key({ modkey            }, "p", function() menubar.show() end,
+    --           {description = "show the menubar", group = "launcher"}),
 
+    --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- custome start applicatio
+    awful.key({ modkey, "Shift"   }, "c", function () awful.spawn(chrome) end,
+              {description = "open a chrome", group = "application"}),
+    awful.key({ modkey,           }, "\'", function () scratch.toggle("alacritty --class scratch-term") end,
+              {description = "open a scratch", group = "application"}),
+
+
+    --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- custome start applicatio
+    awful.key({ modkey,           }, "p", function () awful.spawn(mpv_toggle) end,
+              {description = "music toggle", group = "control"}),
+    awful.key({ modkey,           }, "[", function () awful.spawn(vol_dwon) end,
+              {description = "volume down", group = "control"}),
+    awful.key({ modkey,           }, "]", function () awful.spawn(vol_up) end,
+              {description = "volume down", group = "control"}),
+    awful.key({ modkey,           }, "\\", function () awful.spawn(vol_mute) end,
+              {description = "volume mute", group = "control"})
   )
 
   return globalkeys
