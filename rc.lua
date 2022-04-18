@@ -18,10 +18,12 @@ RC.vars = require("main.user-variables")
 
 -- {{{ Error handling -- }}}
 require("main.error-handling")
+awful.util.tagnames = {}
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default"))
+beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "multicolor"))
+
 -- }}}
 
 modkey = RC.vars.modkey
@@ -50,6 +52,7 @@ local binding = {
 RC.layouts = main.layouts()
 -- }}}
 
+awful.layout.layouts  = RC.layouts
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 -- a variable needed in rules, tasklist, and globalkeys
@@ -82,7 +85,7 @@ root.keys(RC.globalkeys)
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Statusbar: Wibar
 require("deco.statusbar")
