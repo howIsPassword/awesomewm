@@ -10,10 +10,17 @@ function _M.get ()
 
   awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
-    tags[s] = awful.tag(
-      { "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, RC.layouts[1]
-    )
+    if s.geometry.width >= s.geometry.height then
+      tags[s] = awful.tag(
+        { "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, RC.layouts[1]
+      )
+    else
+      tags[s] = awful.tag(
+        { "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, RC.layouts[3]
+      )
+    end
   end)
+
   return tags
 end
 
