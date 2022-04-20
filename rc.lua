@@ -103,3 +103,4 @@ awful.rules.rules = main.rules(
 require("main.signals")
 -- }}}
 
+awful.spawn.with_shell("~/scripts/wallpapers-auto.sh")

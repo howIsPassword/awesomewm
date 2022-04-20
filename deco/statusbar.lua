@@ -12,11 +12,10 @@ local deco             = {
 local taglist_buttons  = deco.taglist()
 local tasklist_buttons = deco.tasklist()
 
-local font = "JetBrainsMono Nerd Font 10"
 
-local _M               = {}
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
+awful.util.tasklist_buttons = tasklist_buttons
+awful.util.taglist_buttons = taglist_buttons
 awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
   theme.at_screen_connect(s)
