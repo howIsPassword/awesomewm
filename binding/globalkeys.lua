@@ -1,7 +1,8 @@
 -- Standard awesome library
-local gears         = require("gears")
-local awful         = require("awful")
-local scratch       = require("plug.scratch")
+local gears   = require("gears")
+local awful   = require("awful")
+local scratch = require("plug.scratch")
+local theme   = require("themes.multicolor.theme")
 -- local hotkeys_popup = require("awful.hotkeys_popup").widget
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Menubar library
@@ -154,18 +155,23 @@ function _M.get()
               {description = "open a chrome", group = "application"}),
     awful.key({ modkey,           }, "\'", function () scratch.toggle("alacritty --class scratch-term") end,
               {description = "open a scratch", group = "application"}),
+    awful.key({ modkey,           }, "u", function () scratch.toggle("deepin-screenshot") end,
+              {description = "open a scratch", group = "application"}),
 
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- custome start applicatio
     awful.key({ modkey,           }, "p", function () awful.spawn(mpv_toggle) end,
               {description = "music toggle", group = "control"}),
-    awful.key({ modkey,           }, "[", function () awful.spawn(vol_dwon) end,
+    -- async update widget
+    awful.key({ modkey,           }, "[", function () awful.spawn.easy_async_with_shell(vol_dwon, function () theme.volume.update(); end); end,
               {description = "volume down", group = "control"}),
-    awful.key({ modkey,           }, "]", function () awful.spawn(vol_up) end,
+    awful.key({ modkey,           }, "]", function () awful.spawn.easy_async_with_shell(vol_up, function () theme.volume.update(); end); end,
               {description = "volume down", group = "control"}),
     awful.key({ modkey,           }, "\\", function () awful.spawn(vol_mute) end,
-              {description = "volume mute", group = "control"})
+              {description = "volume mute", group = "control"}),
+    awful.key({ modkey,           }, "d", function () awful.spawn.with_shell("~/scripts/wallpapers-ch.sh") end,
+              {description = "volume down", group = "control"})
   )
 
   return globalkeys
